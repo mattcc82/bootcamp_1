@@ -99,7 +99,7 @@ const app = new Vue({
 
           this.cards = [
             { chartType: this.barLineChart, title: 'Top 5 Rated Games', size: 'column is-full' },
-            { chartType: this.doughnutChart, title: 'Total Genre Break-out', size: 'column is-4' },
+            { chartType: this.doughnutChart, title: 'Total Genre Breakout', size: 'column is-4' },
             { chartType: this.barChart, title: 'Top 5 Developers (Most 90+ Critic Scores)', size: 'column is-8' }
           ] // hardcoded
 
