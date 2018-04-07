@@ -12,7 +12,7 @@ def get_data():
 
     output = data_pull(path, source)
 
-    return output.to_json()
+    return output.reset_index().to_json(orient="records")
 
 
 def user():

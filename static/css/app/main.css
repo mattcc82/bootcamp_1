@@ -1,5 +1,5 @@
 html {
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 [v-cloak] {
     display: none;
@@ -13,4 +13,9 @@ html {
 {
     opacity: 0;
 }
-
+.card {
+    width: 100%;
+}
+.echarts {
+    width: 100% !important;
+}

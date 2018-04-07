@@ -1,15 +1,22 @@
 // card component
 const gongosCard = {
   template: `
-    <div class="card">
-      <header class="card-header">Card Title</header>
-      <div class="card-content">
-        <div class="content">
-          stuff
+    <div :class="cardSize">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            {% cardTitle %}
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <slot></slot>
+          </div>
         </div>
       </div>
-    </div> 
+    </div>
   `,
+  props: ['cardTitle', 'cardSize'],
   data() {
     return {
 

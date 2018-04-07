@@ -1,10 +1,27 @@
 {{extend 'layout.html'}}
-<gongos-navbar v-cloak key="navbar"></gongos-navbar>
-<gongos-hero v-cloak key="hero" :title="title" :subtitle="subtitle" :is-loading="isLoading" @get-data="getData"></gongos-hero>
-<gongos-content v-cloak key="content">
-    <gongos-card></gongos-card>
-</gongos-content>
 
+<gongos-navbar v-cloak key="navbar"></gongos-navbar>
+<gongos-hero v-cloak key="hero" 
+    :title="title" 
+    :subtitle="subtitle" 
+    :is-loading="isLoading" @get-data="getData">
+</gongos-hero>
+
+<section class="section" key="main-content">
+    <div class="container">
+        <div class="columns is-multiline">
+            <gongos-card
+                :card-title="card.title"
+                :card-size="card.size"
+                v-for="(card, index) in cards" 
+                :key="'card_' + index">
+                <template>
+                    <chart :auto-resize="true" :options="card.chartType" ref="chart"></chart>
+                </template>
+            </gongos-card>
+        </div>
+    </div>
+</section>  
 
 {{block component_js}}
 <!-- nav -->
@@ -15,4 +32,6 @@
 <script src="{{=URL('static','js/app/components/gongos-content.js')}}"></script>
 <!-- card -->
 <script src="{{=URL('static','js/app/components/gongos-card.js')}}"></script>
+<!-- charts -->
+<script src="{{=URL('static','js/app/components/gongos-charts.js')}}"></script>
 {{end}}
