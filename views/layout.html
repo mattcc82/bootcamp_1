@@ -11,16 +11,23 @@
     <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
     <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{=URL('static', 'css/vendor/bulma.css')}}">
+    <link rel="stylesheet" href="{{=URL('static', 'css/app/main.css')}}">
   </head>
-  <body>
+  <body class="has-navbar-fixed-top">
     <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
     
-    <div id="main">
-      {{ include }}
+    <div id="main" v-cloak>
+      <transition-group name="fade" appear>
+        {{ include }}
+      </transition-group>
     </div>
     
     <script>
       const GETDATA = '{{=URL("default", "get_data")}}'
+      const BASE = '{{=URL("default", "index")}}'
     </script>
     <!-- babel -->
     <script src="{{=URL('static','js/vendor/babel.min.js')}}"></script>
@@ -32,8 +39,10 @@
     <script src="{{=URL('static','js/vendor/vuex.js')}}"></script>
     <!-- axios -->
     <script src="{{=URL('static','js/vendor/axios.min.js')}}"></script>
+    <!-- axios -->
+    <script src="{{=URL('static','js/vendor/echarts-all.js')}}"></script>
+     {{block component_js}}{{end component_js}}
     <!-- app.js -->
     <script src="{{=URL('static','js/app/app.js')}}"></script>
-
   </body>
 </html>

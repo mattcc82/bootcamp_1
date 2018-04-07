@@ -1,9 +1,18 @@
+
 def index():
     return dict()
 
 
 def get_data():
-    return 'Axios is initialized'
+    import os
+    from data_pull import data_pull
+
+    path = os.path.join(request.folder, 'private/data/data.h5')
+    source = '/data/'
+
+    output = data_pull(path, source)
+
+    return output.to_json()
 
 
 def user():
