@@ -79,10 +79,10 @@ const app = new Vue({
           ] // make variable
           this.barLineChart.xAxis = [] 
           
-          this.barLineChart.xAxis.push({ type: 'category', data: Object.values(namesData), axisPointer: { type: 'shadow' } })
-          this.barLineChart.series.push({ name: 'Critic Score', type: 'bar', data: Object.values(seriesData1) })
-          this.barLineChart.series.push({ name: 'User Score', type: 'bar', data: Object.values(seriesData3) })
-          this.barLineChart.series.push({ name: 'Global Sales', type: 'line', yAxisIndex: 1, data: Object.values(seriesData2) })
+          this.barLineChart.xAxis.push({ type: 'category', data: namesData, axisPointer: { type: 'shadow' } })
+          this.barLineChart.series.push({ name: 'Critic Score', type: 'bar', data: seriesData1 })
+          this.barLineChart.series.push({ name: 'User Score', type: 'bar', data: seriesData3 })
+          this.barLineChart.series.push({ name: 'Global Sales', type: 'line', yAxisIndex: 1, data: seriesData2 })
 
           // doughnut
           this.doughnutChart = JSON.parse(JSON.stringify(baseDoughnutChart))
