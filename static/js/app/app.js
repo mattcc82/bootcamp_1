@@ -84,7 +84,7 @@ const app = new Vue({
           this.barLineChart.series.push({ name: 'Critic Score', type: 'bar', data: seriesData1 })
           this.barLineChart.series.push({ name: 'User Score', type: 'bar', data: seriesData3 })
           this.barLineChart.series.push({ name: 'Global Sales', type: 'line', yAxisIndex: 1, data: seriesData2 })
-          this.barLineChart.color = Object.values(chartSeriesColors)
+          this.barLineChart.color = Object.keys(chartSeriesColors).map(e => chartSeriesColors[e])
 
           // doughnut
           // this.doughnutChart = JSON.parse(JSON.stringify(baseDoughnutChart)) // this can be dangerous
@@ -93,7 +93,7 @@ const app = new Vue({
           this.doughnutChart.legend.data = _.map(readyData['genres'], 'genre')
           this.doughnutChart.series[0].data = readyData['genres']
           this.doughnutChart.series[0].name = 'Genre'
-          this.doughnutChart.color = Object.values(chartSeriesColors)
+          this.doughnutChart.color = Object.keys(chartSeriesColors).map(e => chartSeriesColors[e])
 
           // simple bar
           // this.barChart = JSON.parse(JSON.stringify(baseBarChart)) // this can be dangerous
@@ -101,7 +101,7 @@ const app = new Vue({
           this.barChart.title.text = 'Top 5 Developers (Most 90+ Critic Scores)'
           this.barChart.xAxis.data = _.map(readyData['developers'], 'name')
           this.barChart.series[0] = { type: 'bar', data: _.map(readyData['developers'], 'value') }
-          this.barChart.color = Object.values(chartSeriesColors)
+          this.barChart.color = Object.keys(chartSeriesColors).map(e => chartSeriesColors[e])
 
           this.cards = [
             { chartType: this.barLineChart, title: 'Top 5 Rated Games', size: 'column is-full' },
