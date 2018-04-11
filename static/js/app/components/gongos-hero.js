@@ -1,7 +1,7 @@
 // hero component
 const gongosHero = {
   template: `
-    <section class="hero is-medium is-primary">
+    <section class="hero is-bold is-danger is-radiusless">
       <div class="hero-body">
           <div class="container">
               <div class="columns">
@@ -16,7 +16,7 @@ const gongosHero = {
                   <div class="column is-12-desktop">
                     <button 
                       @click="$emit('get-data')"
-                      class="button is-primary is-inverted is-outlined is-large"
+                      class="button is-danger is-inverted is-outlined is-large"
                       :class="{'is-loading': isLoading}">
                       See Results <i class="fas fa-angle-right" style="width: 2rem;"></i>
                     </button>

@@ -52,7 +52,8 @@ const app = new Vue({
           var seriesData3 = _.map(readyData['top5Games'], 'user_score')
           var seriesData2 = _.map(readyData['top5Games'], 'global_sales')
 
-          this.barLineChart = JSON.parse(JSON.stringify(baseBarLineChart))
+          // this.barLineChart = JSON.parse(JSON.stringify(baseBarLineChart)) // this can be dangerous
+          this.barLineChart = _.cloneDeep(baseBarLineChart) // using lodash to create a deep copy of the obj
           this.barLineChart.title.text = 'Top 5 Rated Games' // should be variable
           this.barLineChart.legend.data = ['Critic Score', 'User Score', 'Global Sales'] // should be variable
           this.barLineChart.yAxis = [
@@ -83,19 +84,24 @@ const app = new Vue({
           this.barLineChart.series.push({ name: 'Critic Score', type: 'bar', data: seriesData1 })
           this.barLineChart.series.push({ name: 'User Score', type: 'bar', data: seriesData3 })
           this.barLineChart.series.push({ name: 'Global Sales', type: 'line', yAxisIndex: 1, data: seriesData2 })
+          this.barLineChart.color = Object.values(chartSeriesColors)
 
           // doughnut
-          this.doughnutChart = JSON.parse(JSON.stringify(baseDoughnutChart))
+          // this.doughnutChart = JSON.parse(JSON.stringify(baseDoughnutChart)) // this can be dangerous
+          this.doughnutChart = _.cloneDeep(baseDoughnutChart) // using lodash to create a deep copy of the obj
           this.doughnutChart.title.text = 'Total Genre Breakout'
           this.doughnutChart.legend.data = _.map(readyData['genres'], 'genre')
           this.doughnutChart.series[0].data = readyData['genres']
           this.doughnutChart.series[0].name = 'Genre'
+          this.doughnutChart.color = Object.values(chartSeriesColors)
 
-          // simple bar           
-          this.barChart = JSON.parse(JSON.stringify(baseBarChart))
+          // simple bar
+          // this.barChart = JSON.parse(JSON.stringify(baseBarChart)) // this can be dangerous
+          this.barChart = _.cloneDeep(baseBarChart) // using lodash to create a deep copy of the obj           
           this.barChart.title.text = 'Top 5 Developers (Most 90+ Critic Scores)'
           this.barChart.xAxis.data = _.map(readyData['developers'], 'name')
           this.barChart.series[0] = { type: 'bar', data: _.map(readyData['developers'], 'value') }
+          this.barChart.color = Object.values(chartSeriesColors)
 
           this.cards = [
             { chartType: this.barLineChart, title: 'Top 5 Rated Games', size: 'column is-full' },

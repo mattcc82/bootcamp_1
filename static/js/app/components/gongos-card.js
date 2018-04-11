@@ -3,11 +3,6 @@ const gongosCard = {
   template: `
     <div :class="cardSize">
       <div class="card">
-        <header class="card-header">
-          <p class="card-header-title">
-            {% cardTitle %}
-          </p>
-        </header>
         <div class="card-content">
           <div class="content">
             <slot></slot>

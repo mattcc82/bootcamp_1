@@ -1,27 +1,32 @@
 {{extend 'layout.html'}}
 
 <gongos-navbar v-cloak key="navbar"></gongos-navbar>
-<gongos-hero v-cloak key="hero" 
-    :title="title" 
-    :subtitle="subtitle" 
-    :is-loading="isLoading" @get-data="getData">
+<gongos-hero v-cloak key="hero" :title="title" :subtitle="subtitle" :is-loading="isLoading" @get-data="getData">
 </gongos-hero>
 
 <section class="section" key="main-content">
-    <div class="container">
+    <div class="container is-fluid">
+        <div v-show="cards.length <= 0" class="hero is-dark is-radiusless">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title" style="text-align: center">
+                        Click "See Results"
+                    </h1>
+                    <h2 class="subtitle" style="text-align: center">
+                        It will be great
+                    </h2>
+                </div>
+            </div>
+        </div>
         <div class="columns is-multiline">
-            <gongos-card
-                :card-title="card.title"
-                :card-size="card.size"
-                v-for="(card, index) in cards" 
-                :key="'card_' + index">
+            <gongos-card :card-title="card.title" :card-size="card.size" v-for="(card, index) in cards" :key="'card_' + index">
                 <template>
                     <chart :auto-resize="true" :options="card.chartType" ref="chart"></chart>
                 </template>
             </gongos-card>
         </div>
     </div>
-</section>  
+</section>
 
 {{block component_js}}
 <!-- nav -->

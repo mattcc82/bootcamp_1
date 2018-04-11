@@ -1,8 +1,18 @@
+html,
+body {     
+    height: 100%;
+}
 html {
     overflow-y: auto;
 }
+body {
+    background-color: #363636;
+}
 [v-cloak] {
     display: none;
+}
+.hero {
+    margin-top: 52px;
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -15,6 +25,7 @@ html {
 }
 .card {
     width: 100%;
+    background-color: rgba(255,255,255,0.1);
 }
 .echarts {
     width: 100% !important;

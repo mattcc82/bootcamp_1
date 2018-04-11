@@ -1,10 +1,28 @@
+const chartSeriesColors = {
+  'primary': '#FF3860',
+  'secondary': '#363636',
+  'tertiary': '#3273DC',
+  'fourth': '#00D1B2',
+  'fifth': '#23D160',
+  'sixth': '#FFDD57',
+  'seventh': '#209CEE',
+  'eight': '#7A7A7A',
+  'ninth': '#363636',
+  'last': '#DBDBDB'
+}
+const chartTextStyle = {
+  color: '#FAFAFA'
+}
+
 // bar & line
 const baseBarLineChart = {
   title: {
-    text: ''
+    text: '',
+    textStyle: chartTextStyle
   },
   legend: {
-    data: []
+    data: [],
+    textStyle: chartTextStyle
   },
   tooltip: {
     trigger: 'axis',
@@ -18,13 +36,16 @@ const baseBarLineChart = {
   xAxis: [],
   yAxis: [],
   series: [],
-  animationDuration: 1000
+  animationDuration: 1000,
+  color: [],
+  textStyle: chartTextStyle
 }
 
 // simple bar
 const baseBarChart = {
   title: {
-    text: ''
+    text: '',
+    textStyle: chartTextStyle
   },
   xAxis: {
       type: 'category',
@@ -36,14 +57,17 @@ const baseBarChart = {
   yAxis: {
       type: 'value'
   },
-  series: []
+  series: [],
+  color: [],
+  textStyle: chartTextStyle
 };
 
 
 // doughnut
 const baseDoughnutChart = {
   title: {
-    text: ''
+    text: '',
+    textStyle: chartTextStyle
   },
   tooltip: {
       trigger: 'item',
@@ -52,7 +76,8 @@ const baseDoughnutChart = {
   legend: {
       orient: 'vertical',
       x: 'left',
-      data:[]
+      data:[],
+      textStyle: chartTextStyle
   },
   series: [
       {
@@ -80,5 +105,7 @@ const baseDoughnutChart = {
           },
           data:[]
       }
-  ]
+  ],
+  color: [],
+  // textStyle: chartTextStyle
 };
