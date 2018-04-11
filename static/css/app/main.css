@@ -6,6 +6,8 @@ html {
     overflow-y: auto;
 }
 body {
+    /* hacky calc for fix nav at 52px */
+    height: calc(100% - 52px);
     background-color: #363636;
 }
 [v-cloak] {
