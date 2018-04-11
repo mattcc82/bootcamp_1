@@ -132,6 +132,5 @@ const app = new Vue({
         resolve(readyData)
       })
     }
-
-  }
+  },
 })
