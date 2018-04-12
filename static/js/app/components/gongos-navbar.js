@@ -2,9 +2,9 @@
 const gongosNavbar = {
   template: `
     <nav class="navbar is-transparent is-fixed-top is-dark is-radiusless" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand is-uppercase">
+      <div class="navbar-brand is-lowercase">
         <a class="navbar-item is-fixed-top" :href="home">
-          <span class="has-text-light">Bootcamp</span>
+          <span class="has-text-light"><i class="fab fa-bimobject"></i>ootcamp</span>
         </a>
         <div class="navbar-burger" data-target="navbarMenu">
           <span></span>

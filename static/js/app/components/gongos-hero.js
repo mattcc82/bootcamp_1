@@ -1,7 +1,7 @@
 // hero component
 const gongosHero = {
   template: `
-    <section class="hero is-bold is-danger is-radiusless">
+    <section class="hero is-bold is-danger is-radiusless" :class="heroClass">
       <div class="hero-body">
           <div class="container">
               <div class="columns">
@@ -13,7 +13,7 @@ const gongosHero = {
                         {% subtitle %}
                       </h2>
                   </div>
-                  <div class="column is-12-desktop">
+                  <div class="column">
                     <button 
                       @click="$emit('get-data')"
                       class="button is-danger is-inverted is-outlined is-large"
@@ -27,7 +27,7 @@ const gongosHero = {
     </section>  
   `,
   props: [
-    'title', 'subtitle', 'isLoading'
+    'title', 'subtitle', 'isLoading', 'heroClass'
   ],
   data() {
     return {

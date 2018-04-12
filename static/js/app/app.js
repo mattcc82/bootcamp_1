@@ -1,6 +1,8 @@
 Vue.options.delimiters = ['{%', '%}']
 Vue.component('chart', VueECharts)
 
+const isIE11 = !!window.MSInputMethodContext && !!document.documentMode
+
 const app = new Vue({
   // create your Vue Object
   el: '#main',
@@ -13,20 +15,38 @@ const app = new Vue({
   data: {
     title: 'Bootcamp Exercise',
     subtitle: 'Visualizing data from videogame sales and ratings',
+    heroClass: isIE11 ? 'is-large' : 'is-fullheight',
     isLoading: false,
+    loadCompleted: 0,
     chartData: [], 
     cards: [],
     barLineChart: {},
     doughnutChart: {},
     barChart: {},
   },
+  watch: {
+    isLoading: function(v) {
+      if (v || this.cards.length > 0) {
+        this.heroClass = ''
+      } else {
+        this.heroClass = 'is-fullheight'
+      }
+    }
+  },
   methods: {
     getData: function () {
       var vm = this
       this.isLoading = true
-      axios.get(GETDATA)
+      let axiosConfig = {
+        onDownloadProgress: function (progressEvent) {
+          let currentProgress = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+          vm.loadCompleted = currentProgress
+          console.warn(currentProgress)
+        }
+      }
+      axios.get(GETDATA, axiosConfig)
         .then(response => {
-          console.log(response.data)
+          // console.log(response.data)
           this.chartData = response.data
           this.cleanData()
             .then((readyData) => {

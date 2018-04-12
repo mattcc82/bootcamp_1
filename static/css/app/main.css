@@ -7,13 +7,13 @@ html {
 }
 body {
     /* hacky calc for fix nav at 52px */
-    height: calc(100% - 52px);
+    height: 100%;
     background-color: #363636;
 }
 [v-cloak] {
     display: none;
 }
-.hero {
+.hero:not(.is-fullheight):not(.is-large) {
     margin-top: 52px;
 }
 .fade-enter-active,
@@ -25,9 +25,34 @@ body {
 {
     opacity: 0;
 }
+/* Enter and leave animations can use different */
+
+/* durations and timing functions.              */
+
+.slide-fade-enter-active {
+    transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */
+
+{
+    transform: translateX(10px);
+    opacity: 0;
+}
+
+
 .main-content {
-    height: 100%;
+    /* height: 100%; */
     background-color: #363636;
+}
+.progress {
+    transition: width .5s ease-in-out;
 }
 .card {
     width: 100%;
