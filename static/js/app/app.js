@@ -10,7 +10,8 @@ const app = new Vue({
     'gongos-navbar': gongosNavbar,
     'gongos-hero': gongosHero,
     'gongos-content': gongosContent,
-    'gongos-card': gongosCard
+    'gongos-card': gongosCard,
+    // 'gongos-panel': gongosPanel
   },
   data: {
     title: 'Bootcamp Exercise',
@@ -47,8 +48,10 @@ const app = new Vue({
       axios.get(GETDATA, axiosConfig)
         .then(response => {
           // console.log(response.data)
-          this.chartData = response.data
-          this.cleanData()
+          _.forEach(response.data, function(v, k) {
+            response.data[k] = JSON.parse(v)
+          })
+          this.cleanData(response.data)
             .then((readyData) => {
               this.createCharts(readyData)
               this.isLoading = false
@@ -74,7 +77,7 @@ const app = new Vue({
 
           // this.barLineChart = JSON.parse(JSON.stringify(baseBarLineChart)) // this can be dangerous
           this.barLineChart = _.cloneDeep(baseBarLineChart) // using lodash to create a deep copy of the obj
-          this.barLineChart.title.text = 'Top 5 Rated Games' // should be variable
+          this.barLineChart.title.text = 'Top 5 Global Sales' // should be variable
           this.barLineChart.legend.data = ['Critic Score', 'User Score', 'Global Sales'] // should be variable
           this.barLineChart.yAxis = [
             {
@@ -91,10 +94,10 @@ const app = new Vue({
               type: 'value',
               name: 'Global Sales',
               min: 0,
-              max: 30,
-              interval: 5,
+              max: 100,
+              interval: 25,
               axisLabel: {
-                formatter: '{value} mil'
+                formatter: '{value} mil units'
               }
             }
           ] // make variable
@@ -124,26 +127,30 @@ const app = new Vue({
           this.barChart.color = Object.keys(chartSeriesColors).map(e => chartSeriesColors[e])
 
           this.cards = [
-            { chartType: this.barLineChart, title: 'Top 5 Rated Games', size: 'column is-full' },
+            { chartType: this.barLineChart, title: 'Top 5 Global Sales', size: 'column is-full' },
             { chartType: this.doughnutChart, title: 'Total Genre Breakout', size: 'column is-4' },
             { chartType: this.barChart, title: 'Top 5 Developers (Most 90+ Critic Scores)', size: 'column is-8' }
           ] // hardcoded
 
 
     },
-    cleanData: function () {
+    cleanData: function (data) {
       return new Promise((resolve, reject) => {
         var readyData = {}
-        this.chartData = _(this.chartData)
+        data['raw_data'] = _(data['raw_data'])
           .filter(function (o) { return (o.critic_score !== null && o.user_score !== null )}).value()
+        data['grouped_by_name_data'] = _(data['grouped_by_name_data'])
+          .filter(function (o) { return (o.critic_score !== null && o.user_score !== null) }).value()
         // sort desc by score
-        readyData['top5Games'] = _.orderBy(this.chartData, ['critic_score'], ['desc']).slice(0, 5)
-        readyData['genres'] = _(this.chartData)
+        this.chartData = data
+        var debugData = data
+        readyData['top5Games'] = _.orderBy(data['grouped_by_name_data'], ['global_sales'], ['desc']).slice(0, 5)
+        readyData['genres'] = _(data['raw_data'])
           .groupBy('genre')
           .map((items, genre) => ({ name: genre, value: items.length }))
           .orderBy(['value'],['desc'])
           .value()
-        readyData['developers'] = _(this.chartData)
+        readyData['developers'] = _(data['raw_data'])
           .filter(function (o) { return o.critic_score >= 90 })
           .groupBy('developer')
           .map((items, developer) => ({name: developer, value: items.length}))

@@ -5,14 +5,26 @@ def index():
 
 def get_data():
     import os
-    from data_pull import data_pull
+    from data_pull import data_pull, group_by_name
 
     path = os.path.join(request.folder, 'private/data/data.h5')
     source = '/data/'
 
-    output = data_pull(path, source)
+    output = {}
 
-    return output.reset_index().to_json(orient="records")
+    # output = data_pull(path, source)
+    # return output.reset_index().to_json(orient="records")
+
+    df = data_pull(path, source)
+
+    output['raw_data'] = df
+    output['grouped_by_name_data'] = group_by_name(df.copy())
+    output['grouped_by_name_data'].columns = output['grouped_by_name_data'].columns.get_level_values(0)
+
+    output['raw_data'] = output['raw_data'].reset_index().to_json(orient="records")
+    output['grouped_by_name_data'] = output['grouped_by_name_data'].reset_index().to_json(orient="records")
+
+    return response.json(output)
 
 
 def user():

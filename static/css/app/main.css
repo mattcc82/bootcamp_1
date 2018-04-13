@@ -6,8 +6,6 @@ html {
     overflow-y: auto;
 }
 body {
-    /* hacky calc for fix nav at 52px */
-    height: 100%;
     background-color: #363636;
 }
 [v-cloak] {
@@ -16,39 +14,7 @@ body {
 .hero:not(.is-fullheight):not(.is-large) {
     margin-top: 52px;
 }
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity .5s;
-}
-.fade-enter,
-.fade-leave-to
-{
-    opacity: 0;
-}
-/* Enter and leave animations can use different */
-
-/* durations and timing functions.              */
-
-.slide-fade-enter-active {
-    transition: all .3s ease;
-}
-
-.slide-fade-leave-active {
-    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-
-.slide-fade-enter,
-.slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */
-
-{
-    transform: translateX(10px);
-    opacity: 0;
-}
-
-
 .main-content {
-    /* height: 100%; */
     background-color: #363636;
 }
 .progress {
@@ -60,4 +26,30 @@ body {
 }
 .echarts {
     width: 100% !important;
+}
+
+
+/* VUE TRANSITION ANIMATION */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+}
+.fade-enter,
+.fade-leave-to
+{
+    opacity: 0;
+}
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+    transition: all .3s ease;
+}
+.slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+    /* .slide-fade-leave-active below version 2.1.8 */
+    transform: translateX(10px);
+    opacity: 0;
 }
