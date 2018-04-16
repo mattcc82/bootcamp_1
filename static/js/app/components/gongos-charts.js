@@ -47,6 +47,10 @@ const baseBarChart = {
     text: '',
     textStyle: chartTextStyle
   },
+  tooltip: {
+    trigger: 'item',
+    formatter: "{b}: {c}"
+  },
   xAxis: {
       type: 'category',
       axisLabel: {
