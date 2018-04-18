@@ -6,7 +6,7 @@
 
 
 <section v-show="isLoading || cards.length > 0" class="main-content" key="main-content">
-    <div class="container is-fluid">
+    <div>
         <transition-group name="slide-fade" mode="out-in" key="loading-trans">
             <div v-show="isLoading" class="hero is-dark is-radiusless" key="loading-content">
                 <div class="hero-body">
@@ -15,13 +15,21 @@
                     </div>
                 </div>
             </div>
-            <div v-show="!isLoading" class="columns is-multiline" key="card-content">
-                <gongos-card :card-title="card.title" :card-size="card.size" v-for="(card, index) in cards" :key="'card_' + index">
-                    <template>
-                        <chart :auto-resize="true" :options="card.chartType" ref="chart"></chart>
-                    </template>
-                </gongos-card>
+            <div v-show="!isLoading" class="columns" key="chart-content">
+                <div class="column is-2">
+                    <gongos-panel v-show="cards.length > 0" key="panel" @get-data="getData($event)"></gongos-panel>
+                </div>
+                <div class="column is-10">
+                    <div class="columns is-multiline">
+                        <gongos-card :card-title="card.title" :card-size="card.size" v-for="(card, index) in cards" :key="'card_' + index">
+                            <template>
+                                <chart :auto-resize="true" :options="card.chartType" ref="chart"></chart>
+                            </template>
+                        </gongos-card>
+                    </div>
+                </div>
             </div>
+            
         </transition-group>
     </div>
 </section>
@@ -35,6 +43,8 @@
 <script type="text/babel" data-presets="es2015,stage-2" src="{{=URL('static','js/app/components/gongos-content.js')}}"></script>
 <!-- card -->
 <script type="text/babel" data-presets="es2015,stage-2" src="{{=URL('static','js/app/components/gongos-card.js')}}"></script>
+<!-- panel -->
+<script type="text/babel" data-presets="es2015,stage-2" src="{{=URL('static','js/app/components/gongos-panel.js')}}"></script>
 <!-- charts -->
 <script type="text/babel" data-presets="es2015,stage-2" src="{{=URL('static','js/app/components/gongos-charts.js')}}"></script>
 {{end}}

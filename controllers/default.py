@@ -7,6 +7,23 @@ def get_data():
     import os
     from data_pull import data_pull, group_by_name
 
+    # get filter vars
+    decade = request.vars.decade
+
+    # filter definitions
+    decades = [
+        range(1979, 2020),
+        range(1980, 1990),
+        range(1990, 2000),
+        range(2000, 2010),
+        range(2010, 2020)
+    ]
+
+    # filter init
+    filter = {}
+
+    filter['year_of_release'] = decades[decade]
+
     path = os.path.join(request.folder, 'private/data/data.h5')
     source = '/data/'
 
@@ -15,7 +32,7 @@ def get_data():
     # output = data_pull(path, source)
     # return output.reset_index().to_json(orient="records")
 
-    df = data_pull(path, source)
+    df = data_pull(path, source, filter)
 
     output['raw_data'] = df
     output['grouped_by_name_data'] = group_by_name(df.copy())

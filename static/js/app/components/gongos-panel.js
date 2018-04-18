@@ -4,15 +4,20 @@
 
 const gongosPanel = {
   template: `
-    <nav class="panel">
-      <p class="panel-heading">
+    <nav class="panel is-radiusless">
+      <p class="panel-heading is-radiusless">
         By Decade
       </p>
-      <div class="panel-block">
-        <button class="button is-danger is-outlined">80's</button>
-        <button class="button is-danger is-outlined">90's</button>
-        <button class="button is-danger is-outlined">00's</button>
-        <button class="button is-danger is-outlined">10's</button>
+      <div class="panel-block has-background-danger is-radiusless">
+        <div class="buttons">
+          <button 
+            @click="$emit('get-data', index)" 
+            class="button is-outlined" 
+            :class="decade === 'All Time' ? 'is-primary' : 'is-danger'" 
+            v-for="(decade, index) in filters.decades" :key="index">
+            {% decade %}
+          </button>
+        </div>
       </div>
     </nav>  
   `,
@@ -21,10 +26,12 @@ const gongosPanel = {
   ],
   data() {
     return {
-      
+      filters: {
+        decades: ['All Time', '80\'s', '90\'s', '00\'s', '10\'s']
+      }
     }
   },
   methods: {
-
+    
   }
 }

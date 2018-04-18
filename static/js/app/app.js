@@ -11,7 +11,7 @@ const app = new Vue({
     'gongos-hero': gongosHero,
     'gongos-content': gongosContent,
     'gongos-card': gongosCard,
-    // 'gongos-panel': gongosPanel
+    'gongos-panel': gongosPanel
   },
   data: {
     title: 'Bootcamp Exercise',
@@ -35,8 +35,9 @@ const app = new Vue({
     }
   },
   methods: {
-    getData: function () {
+    getData: function (index) {
       var vm = this
+      let decade = index || 0
       this.isLoading = true
       let axiosConfig = {
         onDownloadProgress: function (progressEvent) {
@@ -45,7 +46,7 @@ const app = new Vue({
           console.warn(currentProgress)
         }
       }
-      axios.get(GETDATA, axiosConfig)
+      axios.post(GETDATA, { decade: decade }, axiosConfig)
         .then(response => {
           // console.log(response.data)
           _.forEach(response.data, function(v, k) {
@@ -159,5 +160,5 @@ const app = new Vue({
         resolve(readyData)
       })
     }
-  },
+  }
 })
