@@ -7,7 +7,7 @@
 
 <section v-show="isLoading || cards.length > 0" class="main-content" key="main-content">
     <div>
-        <transition-group name="slide-fade" mode="out-in" key="loading-trans">
+        <transition-group name="fade" mode="out-in" key="loading-trans">
             <div v-show="isLoading" class="hero is-dark is-radiusless" key="loading-content">
                 <div class="hero-body">
                     <div class="container">
