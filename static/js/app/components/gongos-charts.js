@@ -20,8 +20,12 @@ const baseBarLineChart = {
     text: '',
     textStyle: chartTextStyle
   },
+  grid: {
+    containLabel: true
+  },
   legend: {
     data: [],
+    bottom: '20px',
     textStyle: chartTextStyle
   },
   tooltip: {

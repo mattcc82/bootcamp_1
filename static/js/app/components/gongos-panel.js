@@ -27,7 +27,7 @@ const gongosPanel = {
   data() {
     return {
       filters: {
-        decades: ['All Time', '80\'s', '90\'s', '00\'s', '10\'s']
+        decades: ['All Time', '90\'s', '00\'s', '10\'s']
       }
     }
   },

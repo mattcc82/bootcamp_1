@@ -13,7 +13,6 @@ def get_data():
     # filter definitions
     decades = [
         range(1979, 2020),
-        range(1980, 1990),
         range(1990, 2000),
         range(2000, 2010),
         range(2010, 2020)
