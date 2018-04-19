@@ -14,13 +14,15 @@ Start up web2py
 localhost:8000/bootcamp_1
 ```
 
-### Key info and tips/warnings
+### Notes and tips/warnings
 
 **Warning**
 
 > This uses babel standalone (https://github.com/babel/babel-standalone) along with es6 module umd plugin (https://babeljs.io/docs/plugins/transform-es2015-modules-umd/)
 
 > It's not ideal to use a browser installed babel in production. It's recompiling code much too often and is not efficient
+
+**Notes**
 
 - It's better to use bundlers and workflow tools like Webpack / Browserify to load modules and transpile through Babel in a precomiled format.
 
