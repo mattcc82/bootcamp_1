@@ -1,3 +1,10 @@
+import Nav from './components/gongos-navbar.js'
+import Hero from './components/gongos-hero.js'
+import Content from './components/gongos-content.js'
+import Card from './components/gongos-card.js'
+import Panel from './components/gongos-panel.js'
+import { chartSeriesColors, chartTextStyle, baseBarLineChart, baseBarChart, baseDoughnutChart } from './components/gongos-charts.js'
+
 Vue.options.delimiters = ['{%', '%}']
 Vue.component('chart', VueECharts)
 
@@ -7,11 +14,11 @@ const app = new Vue({
   // create your Vue Object
   el: '#main',
   components: {
-    'gongos-navbar': gongosNavbar,
-    'gongos-hero': gongosHero,
-    'gongos-content': gongosContent,
-    'gongos-card': gongosCard,
-    'gongos-panel': gongosPanel
+    'gongos-navbar': Nav,
+    'gongos-hero': Hero,
+    'gongos-content': Content,
+    'gongos-card': Card,
+    'gongos-panel': Panel
   },
   data: {
     title: 'Bootcamp Exercise',

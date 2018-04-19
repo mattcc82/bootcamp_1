@@ -35,3 +35,5 @@ const gongosPanel = {
     
   }
 }
+
+export default gongosPanel

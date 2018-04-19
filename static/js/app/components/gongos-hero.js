@@ -38,3 +38,5 @@ const gongosHero = {
 
   }
 }
+
+export default gongosHero

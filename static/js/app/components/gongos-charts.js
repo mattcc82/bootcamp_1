@@ -117,3 +117,5 @@ const baseDoughnutChart = {
   color: [],
   // textStyle: chartTextStyle
 };
+
+export { chartSeriesColors, chartTextStyle, baseBarLineChart, baseBarChart, baseDoughnutChart }

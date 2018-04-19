@@ -55,3 +55,5 @@ const gongosNavbar = {
     })
   }
 }
+
+export default gongosNavbar

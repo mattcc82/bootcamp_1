@@ -49,6 +49,6 @@
     <script src="{{=URL('static','js/vendor/vue-echarts.js')}}"></script>
      {{block component_js}}{{end component_js}}
     <!-- app.js -->
-    <script type="text/babel" data-presets="es2015,stage-2" src="{{=URL('static','js/app/app.js')}}"></script>
+    <script type="text/babel" data-presets="es2015,stage-2" data-plugins="transform-es2015-modules-umd" src="{{=URL('static','js/app/app.js')}}"></script>
   </body>
 </html>

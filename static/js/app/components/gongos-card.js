@@ -21,3 +21,5 @@ const gongosCard = {
 
   }
 }
+
+export default gongosCard
