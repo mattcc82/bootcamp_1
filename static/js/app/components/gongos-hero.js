@@ -1,4 +1,6 @@
 // hero component
+import Eventbus from './eventbus.js'
+
 const gongosHero = {
   template: `
     <section class="hero is-bold is-danger is-radiusless" :class="heroClass">
@@ -15,7 +17,7 @@ const gongosHero = {
                   </div>
                   <div class="column">
                     <button 
-                      @click="$emit('get-data')"
+                      @click="getData()"
                       class="button is-danger is-inverted is-outlined is-large"
                       :class="{'is-loading': isLoading}">
                       See Results <i class="fas fa-angle-right" style="width: 2rem;"></i>
@@ -35,7 +37,9 @@ const gongosHero = {
     }
   },
   methods: {
-
+    getData: function () {
+      Eventbus.$emit('getData', 0) 
+    }
   }
 }
 

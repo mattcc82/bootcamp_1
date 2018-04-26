@@ -1,6 +1,5 @@
 // gongos side-panel
-
-// TO DO - everything
+import Eventbus from './eventbus.js'
 
 const gongosPanel = {
   template: `
@@ -11,7 +10,7 @@ const gongosPanel = {
       <div class="panel-block has-background-danger is-radiusless">
         <div class="buttons">
           <button 
-            @click="$emit('get-data', index)" 
+            @click="getData(index)" 
             class="button is-outlined" 
             :class="decade === 'All Time' ? 'is-primary' : 'is-danger'" 
             v-for="(decade, index) in filters.decades" :key="index">
@@ -32,7 +31,9 @@ const gongosPanel = {
     }
   },
   methods: {
-    
+    getData (index) {
+      Eventbus.$emit('getData', index)
+    }
   }
 }
 

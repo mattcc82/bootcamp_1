@@ -1,3 +1,4 @@
+import Eventbus from './components/eventbus.js'
 import Nav from './components/gongos-navbar.js'
 import Hero from './components/gongos-hero.js'
 import Content from './components/gongos-content.js'
@@ -167,5 +168,10 @@ const app = new Vue({
         resolve(readyData)
       })
     }
+  },
+  created: function () {
+    Eventbus.$on('getData', (payload) => {
+      this.getData(payload)
+    })
   }
 })
