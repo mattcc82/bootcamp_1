@@ -16,12 +16,15 @@ const gongosHero = {
                       </h2>
                   </div>
                   <div class="column">
-                    <button 
+                    <button
+                      type="button"
                       @click="getData()"
                       class="button is-danger is-inverted is-outlined is-large"
-                      :class="{'is-loading': isLoading}">
+                      :class="{'is-loading': isLoading, 'focused': isLoading}">
                       See Results <i class="fas fa-angle-right" style="width: 2rem;"></i>
-                    </button>
+                      </button>
+                    <br><br>  
+                    <progress v-show="isLoading" class="progress is-small" :value="loadCompleted" max="100">{% loadCompleted %}</progress>
                   </div>
               </div>
           </div>
@@ -29,7 +32,7 @@ const gongosHero = {
     </section>  
   `,
   props: [
-    'title', 'subtitle', 'isLoading', 'heroClass'
+    'title', 'subtitle', 'isLoading', 'heroClass', 'loadCompleted'
   ],
   data() {
     return {

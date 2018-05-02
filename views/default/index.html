@@ -1,21 +1,14 @@
 {{extend 'layout.html'}}
 
 <gongos-navbar v-cloak key="navbar"></gongos-navbar>
-<gongos-hero v-cloak key="hero" :hero-class="heroClass" :title="title" :subtitle="subtitle" :is-loading="isLoading">
+<gongos-hero v-cloak key="hero" :hero-class="heroClass" :title="title" :subtitle="subtitle" :is-loading="isLoading" :load-completed="loadCompleted">
 </gongos-hero>
 
 
 <section v-show="isLoading || cards.length > 0" class="main-content" key="main-content">
     <div>
         <transition-group name="fade" mode="out-in" key="loading-trans">
-            <div v-show="isLoading" class="hero is-dark is-radiusless" key="loading-content">
-                <div class="hero-body">
-                    <div class="container">
-                        <progress class="progress is-large is-danger" :value="loadCompleted" max="100">{% loadCompleted %}</progress>
-                    </div>
-                </div>
-            </div>
-            <div v-show="!isLoading" class="columns" key="chart-content">
+            <div  class="columns" key="chart-content">
                 <div class="column is-2">
                     <gongos-panel v-show="cards.length > 0" key="panel"></gongos-panel>
                 </div>
@@ -37,6 +30,8 @@
 {{block component_js}}
 <!-- eventbus -->
 <script type="text/babel" data-presets="es2015,stage-2" data-plugins="transform-es2015-modules-umd" src="{{=URL('static','js/app/components/eventbus.js')}}"></script>
+<!-- mixins -->
+<script type="text/babel" data-presets="es2015,stage-2" data-plugins="transform-es2015-modules-umd" src="{{=URL('static','js/app/dataMixin.js')}}"></script>
 <!-- nav -->
 <script type="text/babel" data-presets="es2015,stage-2" data-plugins="transform-es2015-modules-umd" src="{{=URL('static','js/app/components/gongos-navbar.js')}}"></script>
 <!-- hero -->

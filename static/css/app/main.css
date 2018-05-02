@@ -27,7 +27,11 @@ body {
 .echarts {
     width: 100% !important;
 }
-
+.focused {
+    background-color: #fff !important;
+    color: #ff3860 !important;
+    border-color: #fff !important;
+}
 
 /* VUE TRANSITION ANIMATION */
 .fade-enter-active {
