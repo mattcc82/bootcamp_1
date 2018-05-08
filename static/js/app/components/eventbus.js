@@ -1,3 +1,3 @@
-const eventbus = new Vue()
+const EventBus = new Vue()
 
-export default eventbus
+export default EventBus
